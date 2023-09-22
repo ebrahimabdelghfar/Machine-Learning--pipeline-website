@@ -1,6 +1,6 @@
 numpy
-pandas==1.5.3
-plotly==5.17.0
-scikit_learn==1.2.2
-streamlit==1.26.0
-streamlit_ext==0.1.8
+pandas
+plotly
+scikit_learn
+streamlit
+streamlit_ext
