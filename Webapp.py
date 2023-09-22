@@ -17,6 +17,7 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler, MaxAbsScaler, Po
 
 # ______Model Import______#
 from sklearn.linear_model import LinearRegression, SGDRegressor
+from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVR, SVC
@@ -124,7 +125,35 @@ class WebApp:
             if self.needed_type == "Regression":
                 st.subheader("Select type of regression")
                 self.modelType = st.selectbox(
-                    "type of regressor", ('Linear', 'Polynomial', "SVR", "SGD Regressor"))
+                    "type of regressor", ('Linear', 'Polynomial', "SVR", "SGD Regressor","Gradient Boost Regressor"))
+                
+                if self.modelType == "Gradient Boost Regressor":
+                    param = {"learning_rate": [0.01,0.001,0.0001,0.00001],
+                             "loss": ['squared_error', 'absolute_error', 'huber', 'quantile'],
+                             "n_estimators": range(100,1000,100),
+                             "criterion": ['friedman_mse', 'squared_error'],
+                             "min_samples_split": range(1,7),
+                             "tol": [1e-2, 1e-3, 1e-5, 1e-6, 1e-7, 1e-8],
+                             "warm_start": [True, False]
+                             }
+                    brain = GradientBoostingRegressor()
+                    _, _, col2 = st.columns(3)
+                    with col2:
+                        stratTrain = st.toggle(
+                            f"start {self.modelType} training")
+                    if stratTrain:
+                        grained_brain = GridSearchCV(brain, param_grid=param)
+                        with st.spinner("training.."):
+                            grained_brain.fit(x_train_scaled, y_train)
+                        st.info("done Training🔥")
+                        st.balloons()
+                        best_model = grained_brain.best_estimator_
+                        Y_predict = best_model.predict(x_test_scaled)
+                        preformance = {
+                            "the r2 score of the model is ": r2_score(y_test, Y_predict)}
+                        st.dataframe(preformance, use_container_width=True)
+                        data = self.pickle_model(best_model)
+                        self.dowloadTheModel(data, self.modelType)
 
                 if self.modelType == "SGD Regressor":
                     param = {"penalty": ['l2', 'l1', 'elasticnet'],
