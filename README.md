@@ -1,6 +1,6 @@
 # Machine-Learning--pipeline-website
 # Objective
-The objective of this project is to make a website using Streamlit.\\
+The objective of this project is to make a website using Streamlit.
 # Features of the Website
  - Load the CSV file that contains the data
  - Remove any unnecessary item in the data frame by selecting it
@@ -12,3 +12,10 @@ The objective of this project is to make a website using Streamlit.\\
  - Select between different algorithms in regression and classification
  - Automatically tunning the model hyperparameter
  - Ability to download the trained Model as .pkl
+
+# Link of the deployed project
+https://machine-learning--pipeline-website.streamlit.app/
+
+# How to run locally
+ 1. Install the requirments ```pip install -r requirements.txt```
+ 2. run the app ```streamlit run Webapp.py```
