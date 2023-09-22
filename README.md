@@ -24,3 +24,8 @@ https://machine-learning--pipeline-website.streamlit.app/
 # How to run locally
  1. Install the requirments ```pip install -r requirements.txt```
  2. run the app ```streamlit run Webapp.py```
+# Resources
+ - https://docs.streamlit.io/library/get-started
+ - https://www.youtube.com/watch?v=dPdB7zyGttg&t=331s "It helped me to solve button problem that rerun the page"
+ - https://www.youtube.com/watch?v=yg0Y7w4AHhw&ab_channel=FaniloAndrianasolo
+ - https://www.geeksforgeeks.org/save-and-load-machine-learning-models-in-python-with-scikit-learn/ (how to save and load sklearn using pickle
