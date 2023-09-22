@@ -1,10 +1,8 @@
 # Machine-Learning--pipeline-website
-
-
-https://github.com/ebrahimabdelghfar/Machine-Learning--pipeline-website/assets/81301684/3dba7a57-3548-4a58-a589-bfa9f011e888
-
-<img src="https://github.com/ebrahimabdelghfar/Machine-Learning--pipeline-website/assets/81301684/3dba7a57-3548-4a58-a589-bfa9f011e888" width="200" />
-
+<p align="center">
+<img src="https://github.com/ebrahimabdelghfar/Machine-Learning--pipeline-website/assets/81301684/87aff69f-fb29-4dd0-a6c5-8b798423325a" width="200" />
+<img src="https://github.com/ebrahimabdelghfar/Machine-Learning--pipeline-website/assets/81301684/3c60362a-7bde-427c-a089-b5f68d08bb4f" width="200" />
+</p>
 
 # Objective
 The objective of this project is to make a website using Streamlit.
