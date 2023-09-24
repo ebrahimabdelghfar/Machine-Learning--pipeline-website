@@ -97,7 +97,7 @@ class WebApp:
 
             if state_split:
                 x_train, x_test, y_train, y_test = train_test_split(
-                    self.X_whole, self.Y_whole, test_size=self.train_split)
+                    self.X_whole, self.Y_whole, train_size=self.train_split)
                 st.info("done spliting✅")
                 scalerOption = st.selectbox(
                     "select your scaler", ("StandardScaler", "MaxAbsScaler", "MinMaxScaler"))
