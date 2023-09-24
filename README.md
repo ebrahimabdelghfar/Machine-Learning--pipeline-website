@@ -19,7 +19,7 @@ The objective of this project is to make a website using Streamlit.
  - Ability to download the trained Model as .pkl
 
 # Link of the deployed project
-https://machine-learning--pipeline-website.streamlit.app/
+https://machine-learning-pipeline-website.streamlit.app/
 
 # How to run locally
  1. Install the requirments ```pip install -r requirements.txt```
