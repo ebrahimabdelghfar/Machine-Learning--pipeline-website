@@ -381,8 +381,8 @@ class WebApp:
                 columnString = list()
                 # check for any column that have string elements
                 for i in self.headers:
-                    element = self.data.loc[0].at[i]
-                    if type(element) is type(str()):
+                    element = str(self.data[i].dtype)#check the type of the 
+                    if element == "object" or element =="boolean":
                         # append the string
                         columnString.append(i)
                 # give label unique Id for each string element
