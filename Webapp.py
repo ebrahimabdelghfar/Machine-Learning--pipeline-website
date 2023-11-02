@@ -78,8 +78,9 @@ class WebApp:
     def dowloadTheModel(_self, _data, _modelName):
         return ste.download_button("Download model file", data=_data, file_name=f"model{_modelName}.pkl",)
 
-    def selectModel(self):
+    def selectModel(self,problem_type):
         with self.tab2:
+            st.header(f"the Problem is {problem_type}")
             with st.spinner('Wait for finishing data preprocessing'):
                 while (self.startEDA == False):
                     st.stop()
@@ -118,11 +119,9 @@ class WebApp:
                     x_train_scaled = x_train
                     x_test_scaled = x_test
 
-            st.header("Select the Model you need")
-            self.needed_type = st.selectbox("what do you need to make", (
-                                            'Regression', 'Classification'))
+            choice=problem_type
             # select regression type
-            if self.needed_type == "Regression":
+            if choice == "Regression":
                 st.subheader("Select type of regression")
                 self.modelType = st.selectbox(
                     "type of regressor", ('Linear', 'Polynomial', "SVR", "SGD Regressor","Gradient Boost Regressor"))
@@ -251,7 +250,7 @@ class WebApp:
                         self.dowloadTheModel(data, self.modelType)
 
             # select classification type
-            if self.needed_type == "Classification":
+            if choice == "Classification":
                 st.subheader("Select type of Classification")
                 self.modelType = st.selectbox("type of classificator", (
                                               'KNN', 'SVM', "Descision Tree"))
@@ -364,6 +363,12 @@ class WebApp:
                     'What is not important', options=tuple(self.headers))
                 out_model = st.selectbox(
                     "select the output of the model", tuple(self.headers))
+                # check if the column countain number or string
+                if str(self.data[out_model].dtype) == "object" or str(self.data[out_model].dtype) == "boolean" or str(self.data[out_model].dtype) == "int64" :
+                    modeltype = "Classification"
+                else:
+                    modeltype = "Regression"
+                                    
             _, col2, _ = st.columns(3)
 
             with col2:
@@ -410,10 +415,11 @@ class WebApp:
                 with y:
                     st.subheader("the output data")
                     st.dataframe(self.Y_whole, use_container_width=True)
+        return modeltype
 
     def MainApp(self):
-        self.dataPreprocessing()
-        self.model_requied = self.selectModel()
+        problem_type=self.dataPreprocessing()
+        self.model_requied = self.selectModel(problem_type)
 
 
 Web = WebApp()
