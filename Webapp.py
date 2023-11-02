@@ -78,7 +78,7 @@ class WebApp:
     def dowloadTheModel(_self, _data, _modelName):
         return ste.download_button("Download model file", data=_data, file_name=f"model{_modelName}.pkl",)
 
-    def selectModel(self,problem_type):
+    def selectModel(self, problem_type):
         with self.tab2:
             st.header(f"the Problem is {problem_type}")
             with st.spinner('Wait for finishing data preprocessing'):
@@ -119,19 +119,19 @@ class WebApp:
                     x_train_scaled = x_train
                     x_test_scaled = x_test
 
-            choice=problem_type
+            choice = problem_type
             # select regression type
             if choice == "Regression":
                 st.subheader("Select type of regression")
                 self.modelType = st.selectbox(
-                    "type of regressor", ('Linear', 'Polynomial', "SVR", "SGD Regressor","Gradient Boost Regressor"))
-                
+                    "type of regressor", ('Linear', 'Polynomial', "SVR", "SGD Regressor", "Gradient Boost Regressor"))
+
                 if self.modelType == "Gradient Boost Regressor":
-                    param = {"learning_rate": [0.01,0.001,0.0001,0.00001],
+                    param = {"learning_rate": [0.01, 0.001, 0.0001, 0.00001],
                              "loss": ['squared_error', 'absolute_error', 'huber', 'quantile'],
-                             "n_estimators": range(100,1000,100),
+                             "n_estimators": range(100, 1000, 100),
                              "criterion": ['friedman_mse', 'squared_error'],
-                             "min_samples_split": range(1,7),
+                             "min_samples_split": range(1, 7),
                              "tol": [1e-2, 1e-3, 1e-5, 1e-6, 1e-7, 1e-8],
                              "warm_start": [True, False]
                              }
@@ -275,7 +275,7 @@ class WebApp:
                         best_model = grained_brain.best_estimator_
                         Y_predict = best_model.predict(x_test_scaled)
                         tableOfpreformance = {"the accuracy of the model is ": accuracy_score(
-                            y_test, Y_predict), f"the precision of the model is ": precision_score(y_test, Y_predict)}
+                            y_test, Y_predict), f"the precision of the model is ": precision_score(y_test, Y_predict, average="samples")}
                         st.dataframe(tableOfpreformance,
                                      use_container_width=True)
                         data = self.pickle_model(best_model)
@@ -302,7 +302,7 @@ class WebApp:
                         best_model = grained_brain.best_estimator_
                         Y_predict = best_model.predict(x_test_scaled)
                         tableOfpreformance = {"the accuracy of the model is ": accuracy_score(
-                            y_test, Y_predict), f"the precision of the model is ": precision_score(y_test, Y_predict)}
+                            y_test, Y_predict), f"the precision of the model is ": precision_score(y_test, Y_predict, average="samples")}
                         st.dataframe(tableOfpreformance,
                                      use_container_width=True)
                         data = self.pickle_model(best_model)
@@ -330,7 +330,7 @@ class WebApp:
                         best_model = grained_brain.best_estimator_
                         Y_predict = best_model.predict(x_test_scaled)
                         tableOfpreformance = {"the accuracy of the model is ": accuracy_score(
-                            y_test, Y_predict), f"the precision of the model is ": precision_score(y_test, Y_predict)}
+                            y_test, Y_predict), f"the precision of the model is ": precision_score(y_test, Y_predict,average="samples")}
                         st.dataframe(tableOfpreformance,
                                      use_container_width=True)
                         data = self.pickle_model(best_model)
@@ -364,11 +364,11 @@ class WebApp:
                 out_model = st.selectbox(
                     "select the output of the model", tuple(self.headers))
                 # check if the column countain number or string
-                if str(self.data[out_model].dtype) == "object" or str(self.data[out_model].dtype) == "boolean" or str(self.data[out_model].dtype) == "int64" :
+                if str(self.data[out_model].dtype) == "object" or str(self.data[out_model].dtype) == "boolean" or str(self.data[out_model].dtype) == "int64":
                     modeltype = "Classification"
                 else:
                     modeltype = "Regression"
-                                    
+
             _, col2, _ = st.columns(3)
 
             with col2:
@@ -386,8 +386,8 @@ class WebApp:
                 columnString = list()
                 # check for any column that have string elements
                 for i in self.headers:
-                    element = str(self.data[i].dtype)#check the type of the 
-                    if element == "object" or element =="boolean":
+                    element = str(self.data[i].dtype)  # check the type of the
+                    if element == "object" or element == "boolean":
                         # append the string
                         columnString.append(i)
                 # give label unique Id for each string element
@@ -418,7 +418,7 @@ class WebApp:
         return modeltype
 
     def MainApp(self):
-        problem_type=self.dataPreprocessing()
+        problem_type = self.dataPreprocessing()
         self.model_requied = self.selectModel(problem_type)
 
 
