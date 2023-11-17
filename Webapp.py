@@ -275,7 +275,7 @@ class WebApp:
                         best_model = grained_brain.best_estimator_
                         Y_predict = best_model.predict(x_test_scaled)
                         tableOfpreformance = {"the accuracy of the model is ": accuracy_score(
-                            y_test, Y_predict), f"the precision of the model is ": precision_score(y_test, Y_predict, average="samples")}
+                            y_test, Y_predict)}
                         st.dataframe(tableOfpreformance,
                                      use_container_width=True)
                         data = self.pickle_model(best_model)
@@ -302,7 +302,7 @@ class WebApp:
                         best_model = grained_brain.best_estimator_
                         Y_predict = best_model.predict(x_test_scaled)
                         tableOfpreformance = {"the accuracy of the model is ": accuracy_score(
-                            y_test, Y_predict), f"the precision of the model is ": precision_score(y_test, Y_predict, average="samples")}
+                            y_test, Y_predict)}
                         st.dataframe(tableOfpreformance,
                                      use_container_width=True)
                         data = self.pickle_model(best_model)
@@ -330,7 +330,7 @@ class WebApp:
                         best_model = grained_brain.best_estimator_
                         Y_predict = best_model.predict(x_test_scaled)
                         tableOfpreformance = {"the accuracy of the model is ": accuracy_score(
-                            y_test, Y_predict), f"the precision of the model is ": precision_score(y_test, Y_predict,average="samples")}
+                            y_test, Y_predict)}
                         st.dataframe(tableOfpreformance,
                                      use_container_width=True)
                         data = self.pickle_model(best_model)
